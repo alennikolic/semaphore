@@ -1,7 +1,7 @@
 ---
 - name: Retrieve vCenter hosts
   hosts: vcenter
-  gather_facts: no
+  gather_facts: false
   vars:
     vcenter_api_endpoint: "/rest/vcenter/host"
   tasks:
