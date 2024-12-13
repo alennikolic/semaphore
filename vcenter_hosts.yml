@@ -1,0 +1,29 @@
+---
+- name: Retrieve vCenter hosts
+  hosts: vcenter
+  gather_facts: no
+  vars:
+    vcenter_api_endpoint: "/rest/vcenter/host"
+  tasks:
+    - name: Authenticate to vCenter
+      uri:
+        url: "https://{{ vcenter_hostname }}/rest/com/vmware/cis/session"
+        method: POST
+        user: "{{ vcenter_username }}"
+        password: "{{ vcenter_password }}"
+        force_basic_auth: yes
+        validate_certs: "{{ validate_certs }}"
+      register: auth_response
+
+    - name: Get list of hosts from vCenter
+      uri:
+        url: "https://{{ vcenter_hostname }}{{ vcenter_api_endpoint }}"
+        method: GET
+        headers:
+          vmware-api-session-id: "{{ auth_response.cookies['vmware-api-session-id'] }}"
+        validate_certs: "{{ validate_certs }}"
+      register: host_list
+
+    - name: Display vCenter hosts
+      debug:
+        msg: "{{ host_list.json.value }}"
