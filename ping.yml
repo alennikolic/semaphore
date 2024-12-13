@@ -1,0 +1,7 @@
+---
+- name: Proveri dostupnost hostova putem pinga
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: Pingovanje hostova
+      ping:
