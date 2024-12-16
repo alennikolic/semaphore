@@ -1,0 +1,23 @@
+---
+- name: Create a VM folder in vCenter
+  hosts: localhost
+  gather_facts: no
+  vars_files:
+    - vars.yml
+
+  tasks:
+    - name: Create a VM folder on given datacenter
+      community.vmware.vcenter_folder:
+        hostname: '{{ vcenter_hostname }}'
+        username: '{{ vcenter_username }}'
+        password: '{{ vcenter_password }}'
+        validate_certs: no
+        datacenter_name: '{{ datacenter_name }}'
+        folder_name: '{{ folder_name }}'
+        folder_type: vm
+        state: present
+      register: vm_folder_creation_result
+
+    - name: Debug folder creation result
+      debug:
+        var: vm_folder_creation_result
