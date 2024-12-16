@@ -4,12 +4,12 @@
   gather_facts: no
   tasks:
     - name: Set notes for the VM
-      community.vmware.vmware_vm_vm_detailed:
+      community.vmware.vmware_guest:
         hostname: "{{ vcenter_hostname }}"
         username: "{{ vcenter_username }}"
         password: "{{ vcenter_password }}"
         validate_certs: no
         name: "{{ vm_name }}"  # Naziv VM na kojoj se dodaju beleške
-        state: poweredon  # Može biti poweredon, poweredoff, ili absent
-        notes: "{{ vm_notes }}"  # Beleške koje se dodaju ili ažuriraju
+        state: poweredon  # Moze biti poweredon, poweredoff, ili absent
+        annotation: "{{ vm_notes }}"  # Beleske koje se dodaju ili azuriraju
       delegate_to: localhost
