@@ -1,6 +1,6 @@
 ---
 - name: Proveri dostupnost hostova putem pinga
-  hosts: all
+  hosts: "{{ target_host }}"
   gather_facts: no
   tasks:
     - name: Pingovanje hostova
