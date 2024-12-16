@@ -9,7 +9,6 @@
         username: "{{ vcenter_username }}"
         password: "{{ vcenter_password }}"
         datacenter: '{{ datacenter_name }}'
-        cluster: '{{ cluster_name }}'
         validate_certs: no
         name: "{{ vm_name }}"  # Naziv VM na kojoj se dodaju beleške
         state: present  # Moze biti poweredon, poweredoff, ili absent
