@@ -11,5 +11,5 @@
         validate_certs: no
         name: "{{ vm_name }}"  # Naziv VM na kojoj se dodaju beleške
         state: poweredon  # Moze biti poweredon, poweredoff, ili absent
-        annotation: "{{ vm_notes }}"  # Beleske koje se dodaju ili azuriraju
+        notes: "{{ vm_notes }}"  # Beleske koje se dodaju ili azuriraju
       delegate_to: localhost
