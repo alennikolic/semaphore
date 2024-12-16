@@ -1,0 +1,15 @@
+---
+- name: Add or update notes on an existing VM in VMware
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: Set notes for the VM
+      community.vmware.vmware_vm_vm_detailed:
+        hostname: "{{ vcenter_hostname }}"
+        username: "{{ vcenter_username }}"
+        password: "{{ vcenter_password }}"
+        validate_certs: no
+        name: "{{ vm_name }}"  # Naziv VM na kojoj se dodaju beleške
+        state: poweredon  # Može biti poweredon, poweredoff, ili absent
+        notes: "{{ vm_notes }}"  # Beleške koje se dodaju ili ažuriraju
+      delegate_to: localhost
